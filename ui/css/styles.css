@@ -1,0 +1,22 @@
+body{
+    
+    margin: 0;
+    padding: 0;
+}
+
+#container{
+    background-color: aquamarine;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    .sketch-pad{
+        margin: 10px;
+        width: 90%;
+        box-shadow: 2px 2px 10px black;
+        background-color: aliceblue;
+        flex: 1;
+    }
+}
+
