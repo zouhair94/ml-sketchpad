@@ -1,6 +1,6 @@
 
 class Sketch {
-    constructor(container) {
+    constructor(container, size = 500) {
 
         this.undoBtn = document.createElement("button");
         this.undoBtn.innerHTML = "UNDO";
@@ -8,18 +8,17 @@ class Sketch {
         this.undoBtn.disabled = true;
 
         this.canvas = document.createElement("canvas");
+        this.canvas.width = container.clientWidth;
+        this.canvas.height = container.clientHeight - 100;
         this.canvas.style = `
-            width: 90%;
             margin: 10px;
             box-shadow: 2px 2px 10px black;
             background-color: aliceblue;
-            flex: 1;
         `;
         container.appendChild(this.canvas);
         this.paths = [];
         this.drawing = false;
         this.ctx = this.canvas.getContext('2d');
-
 
         this.#reset();
         this.#addEvenListeners();
@@ -39,8 +38,28 @@ class Sketch {
                 this.#redraw();
             }
         }
-        document.onmouseUp = (e) => {
+
+        document.onmouseup = (e) => {
             this.drawing = false;
+        }
+
+        this.canvas.ontouchstart = (e) => {
+            const loc = e.touches[0];
+            this.canvas.onmousedown(loc);
+        }
+
+        this.canvas.ontouchmove = (e) => {
+            const loc = e.touches[0];
+            this.canvas.onmousemove(loc);
+        }
+
+        document.ontouchend = () => {
+            document.onmouseup();
+        }
+
+        this.undoBtn.onclick = () => {
+            this.paths.pop();
+            this.#redraw();
         }
     }
 

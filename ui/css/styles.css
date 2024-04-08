@@ -11,5 +11,9 @@ body{
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    #sketchPad{
+        width: 90%;
+        flex: 1
+    }
 }
 
