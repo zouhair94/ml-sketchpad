@@ -2,14 +2,14 @@
 class Sketch {
     constructor(container, size = 500) {
 
+        this.container = container;
         this.undoBtn = document.createElement("button");
         this.undoBtn.innerHTML = "UNDO";
         container.appendChild(this.undoBtn);
         this.undoBtn.disabled = true;
 
         this.canvas = document.createElement("canvas");
-        this.canvas.width = container.clientWidth;
-        this.canvas.height = container.clientHeight - 100;
+        this.#resizeCanvas();
         this.canvas.style = `
             margin: 10px;
             box-shadow: 2px 2px 10px black;
@@ -41,6 +41,10 @@ class Sketch {
 
         document.onmouseup = (e) => {
             this.drawing = false;
+        }
+
+        window.onresize = () => {
+            this.#resizeCanvas();
         }
 
         this.canvas.ontouchstart = (e) => {
@@ -86,6 +90,11 @@ class Sketch {
             Math.round(evt.clientX - rect.left),
             Math.round(evt.clientY - rect.top)
         ];
+    }
+
+    #resizeCanvas = () => {
+        this.canvas.width = this.container.clientWidth;
+        this.canvas.height = this.container.clientHeight - 100;
     }
 
 }
