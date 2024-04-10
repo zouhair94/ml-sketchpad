@@ -95,6 +95,8 @@ class Sketch {
     #resizeCanvas = () => {
         this.canvas.width = this.container.clientWidth;
         this.canvas.height = this.container.clientHeight - 100;
+        if (this.ctx)
+            this.#redraw();
     }
 
 }
