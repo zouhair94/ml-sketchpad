@@ -4,6 +4,7 @@ class Sketch {
 
         this.container = container;
         this.undoBtn = document.createElement("button");
+        this.undoBtn.setAttribute("id", "undo");
         this.undoBtn.innerHTML = "UNDO";
         container.appendChild(this.undoBtn);
         this.undoBtn.disabled = true;

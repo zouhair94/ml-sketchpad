@@ -1,19 +1,59 @@
-body{
-    
+body {
     margin: 0;
     padding: 0;
 }
 
-#container{
+#container {
     background-color: aquamarine;
     min-height: 100svh;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    #sketchPad{
-        width: 90%;
-        flex: 1
+}
+
+#sketchPad {
+    width: 90%;
+    flex: 1;
+    max-width: 1200px; /* Limit the width for larger screens */
+    margin: 10px 0; /* Add spacing around the sketch pad */
+}
+
+#undo {
+    display: flex; /* Enable flexbox for centering */
+    justify-content: center; /* Horizontally center content */
+    align-items: center; /* Vertically center content */
+    background-color: rgb(85, 126, 239);
+    color: aquamarine;
+    border: 1px solid rgb(85, 126, 239);
+    border-radius: 2px;
+    padding: 10px 20px; /* Add padding for a larger click area */
+    margin: 20px 0; /* Add space around the button */
+    cursor: pointer; /* Add a pointer cursor for better UX */
+}
+
+#undo:disabled,
+#undo:disabled:hover {
+    background-color: gray;
+    cursor: default;
+}
+
+
+@media (max-width: 768px) {
+    #sketchPad {
+        width: 95%; /* Increase responsiveness for smaller screens */
+    }
+
+    #undo {
+        width: 80%; /* Make the button wider on small screens */
+        font-size: 14px; /* Adjust font size for smaller screens */
+        padding: 8px 16px; /* Adjust padding for smaller screens */
     }
 }
 
+@media (max-width: 480px) {
+    #undo {
+        width: 100%; /* Use full width on very small screens */
+        font-size: 12px; /* Further reduce font size */
+    }
+}
