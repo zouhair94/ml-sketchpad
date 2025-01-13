@@ -28,7 +28,7 @@ body {
     border: 1px solid rgb(85, 126, 239);
     border-radius: 2px;
     padding: 10px 20px; /* Add padding for a larger click area */
-    margin: 20px 0; /* Add space around the button */
+    
     cursor: pointer; /* Add a pointer cursor for better UX */
 }
 
@@ -38,13 +38,27 @@ body {
     cursor: default;
 }
 
+#advanceBtn{
+    display: flex; /* Enable flexbox for centering */
+    justify-content: center; /* Horizontally center content */
+    align-items: center; /* Vertically center content */
+    background-color: rgb(85, 126, 239);
+    color: aquamarine;
+    border: 1px solid rgb(85, 126, 239);
+    border-radius: 2px;
+    padding: 10px 20px; /* Add padding for a larger click area */
+    margin: 20px 0; /* Add space around the button */
+    cursor: pointer; /* Add a pointer cursor for better UX */
+
+}
+
 
 @media (max-width: 768px) {
     #sketchPad {
         width: 95%; /* Increase responsiveness for smaller screens */
     }
 
-    #undo {
+    #undo, #advanceBtn {
         width: 80%; /* Make the button wider on small screens */
         font-size: 14px; /* Adjust font size for smaller screens */
         padding: 8px 16px; /* Adjust padding for smaller screens */
@@ -52,7 +66,7 @@ body {
 }
 
 @media (max-width: 480px) {
-    #undo {
+    #undo, #advanceBtn {
         width: 100%; /* Use full width on very small screens */
         font-size: 12px; /* Further reduce font size */
     }

@@ -9,13 +9,69 @@
 <body>
     <div id="container">
         <h1>Create Data for the Database!</h1>
-        <div id="sketchPad"></div>
+        <input id="student" type="text" placeholder="enter your student" />
+        <span id="instructions"></span>
+        <button id="advanceBtn" onclick="start();">Start</button>
+        <div id="sketchPad" style="visibility: hidden;"></div>
     </div>
 
     <script src="./js/draw.js"></script>
     <script src="./js/sketch.js"></script>
     <script>
+        let index = 0;
+        const labels = ["car", "house", "pencil", "tree", "clock"];
+        const data = {
+            student: null,
+            session: new Date().getTime(),
+            drawings: {}
+
+        };
+
         const sketch = new Sketch(sketchPad);
+
+        function start() {
+
+            if(student.value == ""){
+                alert("please type your name!");
+                return;
+            }
+
+            data.student = student.value;
+            student.style.display = "none";
+            sketchPad.style.visibility = "visible";
+
+            
+
+            advanceBtn.innerHTML = "Next";
+            advanceBtn.onclick = next;
+
+            const label = labels[index];
+            instructions.innerHTML = `please draw a ${label}!`;
+
+        };
+
+        function next(){
+            if(sketch.paths.length == 0){
+                alert("draw something!");
+                return;
+            }
+            const label = labels[index];
+            data.drawings[label] = sketchPad.paths
+
+            sketch.reset();
+
+            if(index<labels.length){
+                index++;
+                const nextLabel = labels[index];
+                instructions.innerHTML = `please draw a ${nextLabel}!`;
+                return;
+            }
+            
+            advanceBtn.innerHTML = "Save";
+            advanceBtn.onclick = save;
+        }
+
+        //const sketch = new Sketch(sketchPad);
     </script>
 </body>
 </html>

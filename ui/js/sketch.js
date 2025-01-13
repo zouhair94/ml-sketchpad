@@ -17,12 +17,15 @@ class Sketch {
             background-color: aliceblue;
         `;
         container.appendChild(this.canvas);
+        this.ctx = this.canvas.getContext('2d');
+        this.reset();
+        this.#addEvenListeners();
+    }
+
+    reset() {
         this.paths = [];
         this.drawing = false;
-        this.ctx = this.canvas.getContext('2d');
-
-        this.#reset();
-        this.#addEvenListeners();
+        this.#redraw();
     }
 
     #addEvenListeners() {
