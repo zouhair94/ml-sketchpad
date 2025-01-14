@@ -1,7 +1,12 @@
 const fs = require("fs");
 const utils = require("../../common/utils");
 
+const { createCanvas } = require("canvas");
+const canvas = createCanvas(400, 400);
+const ctx = canvas.getContext("2d",)
+
 const constants = require("../../common/constants");
+const draw = require("../../common/draw");
 
 const fileNames = fs.readdirSync(constants.RAW_DIR);
 const samples = [];
@@ -18,6 +23,7 @@ fileNames.forEach((e) => {
         });
         fs.writeFileSync(constants.JSON_DIR + "/" + id + ".json", JSON.stringify(drawings[label]))
 
+        generateImageFile(constants.IMG_DIR + "/" + id + ".png", paths);
         utils.formatPercent(id, fileNames.length * 8);
 
         id++;
@@ -26,3 +32,9 @@ fileNames.forEach((e) => {
 fs.writeFileSync(constants.SAMPLES, JSON.stringify(samples));
 
 
+const generateImageFile = (outFile, paths) => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    draw.paths(ctx, paths);
+    const buffer = canvas.toBuffer("image/png");
+    fs.writeFileSync(outFile, buffer);
+};
