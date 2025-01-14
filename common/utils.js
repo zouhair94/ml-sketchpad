@@ -11,6 +11,18 @@ utils.printProgress = (count, max) => {
     process.stdout.write(count + "/" + max + " (" + percent + ")");
 };
 
+utils.groupBy = (objArr, key) => {
+    const groups = {};
+    for (let obj of objArr) {
+        const val = obj[key];
+        if (groups[val] == null) {
+            groups[val] == [];
+        }
+        groups[val].push(obj);
+    }
+    return groups;
+};
+
 
 if (typeof module !== "undefined") {
     module.exports = utils;
