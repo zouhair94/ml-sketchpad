@@ -62,7 +62,7 @@ body {
     align-items: center;
 }
 .thumb{
-    width: 50%;
+    width: 100%;
 }
 
 .rowLabel {
@@ -81,6 +81,17 @@ body {
     overflow: hidden;
 }
 
+.rowLabel {
+    flex: 2 1 0;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    /**style change*/
+    width: 15%;
+    margin-left: 3rem;
+    font-weight: bold;
+ }
+
 @media (max-width: 768px) {
     #sketchPad {
         width: 95%; /* Increase responsiveness for smaller screens */
@@ -91,11 +102,17 @@ body {
         font-size: 14px; /* Adjust font size for smaller screens */
         padding: 8px 16px; /* Adjust padding for smaller screens */
     }
+    #advancedBtn{
+        width: 76%;
+    }
 }
 
 @media (max-width: 480px) {
     #undo, #advanceBtn {
         width: 100%; /* Use full width on very small screens */
         font-size: 12px; /* Further reduce font size */
+    }
+    #advancedBtn{
+        width: 100%;
     }
 }

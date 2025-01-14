@@ -8,7 +8,7 @@ function createRow(container, studentName, samples) {
     const rowLabel = document.createElement("div");
     rowLabel.innerHTML = studentName;
     rowLabel.classList.add("rowLabel");
-    container.appendChild(rowLabel);
+    row.appendChild(rowLabel);
 
     for (let sample of samples) {
         const { id, label } = sample;
