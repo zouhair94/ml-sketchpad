@@ -21,7 +21,9 @@ fileNames.forEach((e) => {
             label,
             id
         });
-        fs.writeFileSync(constants.JSON_DIR + "/" + id + ".json", JSON.stringify(drawings[label]))
+
+        const paths = drawings[label];
+        fs.writeFileSync(constants.JSON_DIR + "/" + id + ".json", JSON.stringify(paths))
 
         generateImageFile(constants.IMG_DIR + "/" + id + ".png", paths);
         utils.formatPercent(id, fileNames.length * 8);
@@ -32,7 +34,7 @@ fileNames.forEach((e) => {
 fs.writeFileSync(constants.SAMPLES, JSON.stringify(samples));
 
 
-const generateImageFile = (outFile, paths) => {
+function generateImageFile(outFile, paths) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     draw.paths(ctx, paths);
     const buffer = canvas.toBuffer("image/png");
