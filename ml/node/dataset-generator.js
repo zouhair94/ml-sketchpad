@@ -26,12 +26,13 @@ fileNames.forEach((e) => {
         fs.writeFileSync(constants.JSON_DIR + "/" + id + ".json", JSON.stringify(paths))
 
         generateImageFile(constants.IMG_DIR + "/" + id + ".png", paths);
-        utils.formatPercent(id, fileNames.length * 8);
+        utils.printProgress(id, fileNames.length * 8);
 
         id++;
     }
 });
 fs.writeFileSync(constants.SAMPLES, JSON.stringify(samples));
+fs.writeFileSync(constants.SAMPLES_JS, "const samples = " + JSON.stringify(samples) + ";")
 
 
 function generateImageFile(outFile, paths) {
