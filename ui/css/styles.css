@@ -65,6 +65,12 @@ body {
     width: 100%;
 }
 
+.blur {
+    /*filter: blur(5px);*/
+    /**style change*/
+    filter: invert(1) blur(5px);
+ }
+
 .rowLabel {
     flex: 2 1 0;
     text-overflow: ellipsis;
@@ -92,6 +98,25 @@ body {
     font-weight: bold;
  }
 
+
+table,td{
+    border:2px solid white;
+    padding:5px;
+    text-align:center;
+    border-collapse:collapse;
+ }
+ 
+ thead{
+    font-weight:bold;
+ }
+ 
+ #chartContainer{
+    
+ }
+ 
+ .emphasize{
+    background-color:yellow;
+ }
 @media (max-width: 768px) {
     #sketchPad {
         width: 95%; /* Increase responsiveness for smaller screens */

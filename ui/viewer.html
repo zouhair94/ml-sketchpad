@@ -9,21 +9,75 @@
 <body>
     <div id="container">
         <h1>Data Viewer!</h1>
+
+        <div id="chartContainer" style="flex:1"></div>
         
         <div id="sketchPad" style="visibility: hidden;"></div>
     </div>
-    <script src="../common/js_objects/samples.js"></script>
+    
     <script src="../common/constants.js"></script>
     <script src="../common/utils.js"></script>
+    <script src="../common/js_objects/features.js"></script>
     <script src="./js/display.js"></script>
+    <script src="./js/chart.js"></script>
+    <script src="./js/graphics.js"></script>
+    <script src="./js/maths.js"></script>
 
     <script>
+        const {samples, featureNames} = features;
         const groups = utils.groupBy(samples,"student_id");
         for (let student_id in groups) {
             const samples = groups[student_id];
             const studentName = samples[0].student_name;
             createRow(container, studentName, samples);
          }
+
+         const options={
+            size:600,
+            axesLabels:[...featureNames],
+            styles:utils.styles,
+            icon:"image",
+            transparency:0.4
+         };
+         graphics.generateImages(options.styles);
+
+         let chart;
+         setTimeout(()=>{
+            chart=new Chart(
+               chartContainer,
+               samples,
+               options,
+               handleClick
+            );
+         },100);
+         
+         
+         function handleClick(sample,doScroll=true){
+            if(sample==null){
+               [...document.querySelectorAll('.emphasize')].
+                  forEach((e)=>e.classList.remove('emphasize'));
+               return;
+            }
+            const el=document.getElementById(
+               "sample_"+sample.id
+            );
+            if(el.classList.contains("emphasize")){
+               el.classList.remove("emphasize");
+               chart.selectSample(null);
+               return;
+            }
+            [...document.querySelectorAll('.emphasize')].
+               forEach((e)=>e.classList.remove('emphasize'));
+            el.classList.add("emphasize");
+            if(doScroll){
+               el.scrollIntoView({  
+                  behavior:'auto',
+                  block:'center'
+               });
+            }
+            chart.selectSample(sample);
+         }
+
     </script>
 </body>
 </html>
